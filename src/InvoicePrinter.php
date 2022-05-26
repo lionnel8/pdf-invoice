@@ -15,11 +15,11 @@ namespace Konekt\PdfInvoice;
 
 use FPDF;
 
-class InvoicePrinter extends FPDF
+class InvoicePrinter extends \tFPDF
 {
     public const ICONV_CHARSET_INPUT = 'UTF-8';
-    public const ICONV_CHARSET_OUTPUT_A = 'ISO-8859-1//TRANSLIT';
-    public const ICONV_CHARSET_OUTPUT_B = 'windows-1252//TRANSLIT';
+    public const ICONV_CHARSET_OUTPUT_A = 'UTF-8'; //ISO-8859-1//TRANSLIT';
+    public const ICONV_CHARSET_OUTPUT_B = 'UTF-8'; //'windows-1252//TRANSLIT';
 
     public const INVOICE_SIZE_LEGAL = 'legal';
     public const INVOICE_SIZE_LETTER = 'letter';
@@ -33,7 +33,7 @@ class InvoicePrinter extends FPDF
     public const NUMBER_ALIGNMENT_RIGHT = 'right';
 
     public $angle = 0;
-    public $font = 'helvetica';                 /* Font Name : See inc/fpdf/font for all supported fonts */
+    public $font = 'DejaVu';                 /* Font Name : See inc/fpdf/font for all supported fonts */
     public $columnOpacity = 0.06;               /* Items table background color opacity. Range (0.00 - 1) */
     public $columnSpacing = 0.3;                /* Spacing between Item Tables */
     public $referenceformat = [                 /* Currency formater */
@@ -93,6 +93,10 @@ class InvoicePrinter extends FPDF
 
         $this->AliasNbPages();
         $this->SetMargins($this->margins['l'], $this->margins['t'], $this->margins['r']);
+        
+        $this->AddFont('dejavu','','DejaVuSans.ttf',true);
+        $this->AddFont('dejavuB','B','DejaVuSans-Bold.ttf',true);
+        
     }
 
     private function setLanguage($language)
@@ -941,7 +945,7 @@ class InvoicePrinter extends FPDF
         $this->Cell(
             0,
             10,
-            iconv('UTF-8', 'ISO-8859-1', $this->lang['page']) . ' ' . $this->PageNo() . ' ' . $this->lang['page_of'] . ' {nb}',
+            $this->lang['page'] . ' ' . $this->PageNo() . ' ' . $this->lang['page_of'] . ' {nb}', //iconv('UTF-8', 'ISO-8859-1', $this->lang['page']) . ' ' . $this->PageNo() . ' ' . $this->lang['page_of'] . ' {nb}',
             0,
             0,
             'R'
