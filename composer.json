@@ -4,6 +4,7 @@
     "type": "library",
     "license": "GPL-2.0-or-later",
     "keywords": ["invoice", "pdf", "konekt", "artkonekt"],
+    "version": "1.11.2",
     "support": {
         "source": "https://github.com/artkonekt/pdf-invoice"
     },
