@@ -95,7 +95,7 @@ class InvoicePrinter extends \tFPDF
         $this->SetMargins($this->margins['l'], $this->margins['t'], $this->margins['r']);
         
         $this->AddFont('dejavu','','DejaVuSans.ttf',true);
-        $this->AddFont('dejavuB','B','DejaVuSans-Bold.ttf',true);
+        $this->AddFont('dejavu','B','DejaVuSans-Bold.ttf',true);
         
     }
 
